@@ -70,12 +70,12 @@ public class TicTacToeGame extends JFrame {
                         if(turn == 1){
                             buttons[z].setIcon(new ImageIcon("src/images/x_image.png"));
                             PutPieceOnBoard(buttons[z].getXpos(),buttons[z].getYpos());
-                            CheckWin(buttons[z].getXpos(),buttons[z].getYpos());
+                            CheckWin();
                             turn = -1;
                         } else {
                             buttons[z].setIcon(new ImageIcon("src/images/o_image.png"));
                             PutPieceOnBoard(buttons[z].getXpos(),buttons[z].getYpos());
-                            CheckWin(buttons[z].getXpos(),buttons[z].getYpos());
+                            CheckWin();
                             turn = 1;
                         }
                     }
@@ -89,8 +89,18 @@ public class TicTacToeGame extends JFrame {
         PlayingBoard[x][y] = turn;
     }
 
-    public void CheckWin(int x, int y){
+    public void CheckWin(){
 
+        if(((PlayingBoard[0][0]==PlayingBoard[1][0]) && (PlayingBoard[0][0]==PlayingBoard[2][0]) && ((PlayingBoard[0][0]== 1) || (PlayingBoard[0][0] == -1))) ||
+           ((PlayingBoard[0][1]==PlayingBoard[1][1]) && (PlayingBoard[0][1]==PlayingBoard[2][1]) && ((PlayingBoard[0][1]== 1) || (PlayingBoard[0][1] == -1))) ||
+           ((PlayingBoard[0][2]==PlayingBoard[1][2]) && (PlayingBoard[0][2]==PlayingBoard[2][2]) && ((PlayingBoard[0][2]== 1) || (PlayingBoard[0][2] == -1))) ||
+           ((PlayingBoard[0][0]==PlayingBoard[0][1]) && (PlayingBoard[0][0]==PlayingBoard[0][2]) && ((PlayingBoard[0][0]== 1) || (PlayingBoard[0][0] == -1))) ||
+           ((PlayingBoard[1][0]==PlayingBoard[1][1]) && (PlayingBoard[1][0]==PlayingBoard[1][2]) && ((PlayingBoard[1][0]== 1) || (PlayingBoard[1][0] == -1))) ||
+           ((PlayingBoard[2][0]==PlayingBoard[2][1]) && (PlayingBoard[2][0]==PlayingBoard[2][2]) && ((PlayingBoard[2][0]== 1) || (PlayingBoard[2][0] == -1))) ||
+           ((PlayingBoard[0][0]==PlayingBoard[1][1]) && (PlayingBoard[1][1]==PlayingBoard[2][2]) && ((PlayingBoard[0][0]== 1) || (PlayingBoard[0][0] == -1))) ||
+           ((PlayingBoard[0][2]==PlayingBoard[1][1]) && (PlayingBoard[0][2]==PlayingBoard[2][0]) && ((PlayingBoard[0][2]== 1) || (PlayingBoard[0][2] == -1))) ){
+            createAndShowWinMessage();
+        }
     }
 
     private static void createAndShowGUI() {
@@ -113,7 +123,7 @@ public class TicTacToeGame extends JFrame {
     }
 
     public static void main(String[] args) {
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
+
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowGUI();
